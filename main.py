@@ -7,3 +7,4 @@ st.write(" KNN , Random Forest")
 
 st.markdown("<h2 style='font-size: 35px;'>Neural Network</h2>", unsafe_allow_html=True)
 st.write("CNN")
+
