@@ -35,9 +35,8 @@ def map_quality_label(quality):
 def show():
     st.title("🍷 Wine Quality Prediction")
 
-    # รับค่าอินพุตจากผู้ใช้
     input_data = []
-    cols = st.columns(4)  # จัด Layout เป็น 4 คอลัมน์ต่อแถว
+    cols = st.columns(4)  #Layout 4 
 
     for i, feature in enumerate(feature_names):
         with cols[i % 4]:  # จัดเรียงให้แต่ละ feature ไปอยู่ใน 4 columns
