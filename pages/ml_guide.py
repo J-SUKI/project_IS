@@ -3,19 +3,23 @@ import streamlit as st
 
 st.markdown("<h1 style='font-size: 40px;'>แนวทางพัฒนา Machine Learning</h1>", unsafe_allow_html=True)
 st.markdown("<h2 style='font-size: 20px;'>การพัฒนาโมเดลทำนายคุณภาพไวน์</h2>", unsafe_allow_html=True)
+
 st.markdown("<h2 style='font-size: 20px;'>1. การเตรียมข้อมูล (Data Preparation)</h2>", unsafe_allow_html=True)
 
 def show():
     st.write("1.1 การนำเข้าชุดข้อมูล")
-    st.write("- ใช้ชุดข้อมูล Wine Quality ซึ่งมีข้อมูลคุณลักษณะทางเคมีของไวน์ เช่น ปริมาณแอลกอฮอล์ ความเป็นกรด")
+    st.write("- ใช้ pandas เพื่อโหลดข้อมูลจากไฟล์ CSV (winequality-red.csv) ซึ่งเป็นข้อมูลเกี่ยวกับคุณภาพไวน์แดง ")
     st.write("1.2 การตรวจสอบข้อมูล")
-    st.write("- ตรวจสอบค่าว่าง (Missing Values) และใช้วิธีเติมค่าที่เหมาะสม เช่น ค่าเฉลี่ย (Mean)")
-    st.write("- แปลงค่าข้อมูลให้เป็นตัวเลขเพื่อให้โมเดลสามารถนำไปใช้ได้")
-    st.write("- ใช้ MinMaxScaler เพื่อปรับค่าคุณลักษณะให้อยู่ในช่วงมาตรฐาน เพื่อช่วยให้โมเดลเรียนรู้ได้ดีขึ้น ")
+    st.write("- จัดการข้อมูลที่หายไปโดยเติมค่าโหมดสำหรับข้อมูลประเภทข้อความและค่าเฉลี่ยสำหรับข้อมูลตัวเลข")
+    st.write("- แยก Features (X) และ Target (y) โดย Target คือคอลัมน์ quality")
+    st.write("- จัดการข้อมูลไม่สมดุลด้วยเทคนิค SMOTE")
+    st.write("- ปรับขนาดข้อมูลด้วย MinMaxScaler")
+
 show()
 st.markdown("<h2 style='font-size: 20px;'>2. ทฤษฎีของอัลกอริทึมที่พัฒนา (Algorithm Theory)</h2>", unsafe_allow_html=True)
 
 def show():
+    
     st.write("เลือกใช้ Support Vector Machine (SVM) และ Artificial Neural Network (ANN) ")
     st.write("2.1 Support Vector Machine (SVM)")
     st.write("- ใช้หลักการ Hyperplane เพื่อแบ่งแยกข้อมูลที่ดีที่สุด ")

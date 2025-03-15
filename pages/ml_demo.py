@@ -2,26 +2,23 @@ import streamlit as st
 import joblib
 import numpy as np
 
-# โหลดโมเดลและ Scaler
 @st.cache_resource
 def load_model():
-    return joblib.load("models/ml_model.pkl")  # โหลดโมเดลจากโฟลเดอร์ models/
+    return joblib.load("models/ml_model.pkl")  
 
 @st.cache_resource
 def load_scaler():
-    return joblib.load("models/scaler.pkl")  # โหลด Scaler ที่ใช้ในตอนเทรน
+    return joblib.load("models/scaler.pkl") 
 
 model = load_model()
 scaler = load_scaler()
 
-# รายชื่อของ 11 Features
 feature_names = [
     "Alcohol", "Malic Acid", "Ash", "Alcalinity of Ash", "Magnesium",
     "Total Phenols", "Flavanoids", "Nonflavanoid Phenols", 
     "Proanthocyanins", "Color Intensity", "Hue"
 ]
 
-# ฟังก์ชันแปลงค่าคุณภาพไวน์เป็นข้อความ
 def map_quality_label(quality):
     if quality <= 4:
         return f"คุณภาพต่ำ (ระดับ {quality})"
@@ -36,22 +33,19 @@ def show():
     st.title("🍷 Wine Quality Prediction")
 
     input_data = []
-    cols = st.columns(4)  #Layout 4 
+    cols = st.columns(4)  
 
     for i, feature in enumerate(feature_names):
-        with cols[i % 4]:  # จัดเรียงให้แต่ละ feature ไปอยู่ใน 4 columns
+        with cols[i % 4]:  
             input_data.append(st.number_input(f"{feature}", value=0.0))
 
-    # ปุ่มคาดการณ์
     if st.button("🔍 คาดการณ์ Wine Quality"):
         if all(value == 0.0 for value in input_data):
             st.warning("⚠ กรุณากรอกค่าข้อมูลก่อนทำการคาดการณ์!")
         else:
-            # แปลงค่า input ด้วย Scaler ก่อนใช้โมเดล
             input_scaled = scaler.transform([np.array(input_data)])
             prediction = model.predict(input_scaled)
 
-            # แปลงค่าผลลัพธ์เป็นคำอธิบาย
             quality_label = map_quality_label(prediction[0])
 
             st.success(f"🍷 ผลการคาดการณ์คุณภาพไวน์: {quality_label}")
