@@ -4,7 +4,7 @@ import numpy as np
 
 @st.cache_resource
 def load_model():
-    return joblib.load("models/ml_model.pkl")  
+    return joblib.load("models/ml_model.pkl")
 
 @st.cache_resource
 def load_scaler():
