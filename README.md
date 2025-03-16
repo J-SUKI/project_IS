@@ -1,3 +1,4 @@
 # project_IS
 
-# streamlit run main.py
+# myenv\Scripts\activate 
+# streamlit run main.py in myenv
